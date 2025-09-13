@@ -25,7 +25,7 @@ export default function EditBug() {
     if (isAuthenticated && !isLoading && bugId) {
       loadBug()
     }
-  }, [isAuthenticated, isLoading, bugId])
+  }, [isAuthenticated, isLoading, bugId, loadBug])
 
   const loadBug = async () => {
     try {

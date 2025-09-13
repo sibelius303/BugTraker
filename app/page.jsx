@@ -375,10 +375,10 @@ export default function Home() {
                     })}</span>
                   )}
                   {filterStatus && (
-                    <span> con estado "{getStatusText(filterStatus)}"</span>
+                    <span> con estado &quot;{getStatusText(filterStatus)}&quot;</span>
                   )}
                   {filterCreator && (
-                    <span> creados por "{availableCreators.find(c => c.id === parseInt(filterCreator))?.displayName || `Usuario ${filterCreator}`}"</span>
+                    <span> creados por &quot;{availableCreators.find(c => c.id === parseInt(filterCreator))?.displayName || `Usuario ${filterCreator}`}&quot;</span>
                   )}
                 </p>
               </div>
