@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useCallback } from 'react'
 import { useRouter, useParams } from 'next/navigation'
 import { useAuth } from '../../hooks/useAuth'
 import { fetchBugById, updateBugStatus } from '../../utils/api'
@@ -29,9 +29,9 @@ export default function BugDetail() {
     if (isAuthenticated && !isLoading && bugId) {
       loadBug()
     }
-  }, [isAuthenticated, isLoading, bugId, loadBug])
+  }, [isAuthenticated, isLoading, bugId])
 
-  const loadBug = async () => {
+  const loadBug = useCallback(async () => {
     try {
       setLoading(true)
       setError('') // Limpiar errores previos
@@ -54,7 +54,7 @@ export default function BugDetail() {
     } finally {
       setLoading(false)
     }
-  }
+  }, [bugId])
 
   const getStatusColor = (status) => {
     switch (status) {

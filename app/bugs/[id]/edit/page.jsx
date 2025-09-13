@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { useRouter, useParams } from 'next/navigation'
 import { useAuth } from '../../../hooks/useAuth'
 import { fetchBugById, updateBug, uploadMultipleScreenshots } from '../../../utils/api'
@@ -25,9 +25,9 @@ export default function EditBug() {
     if (isAuthenticated && !isLoading && bugId) {
       loadBug()
     }
-  }, [isAuthenticated, isLoading, bugId, loadBug])
+  }, [isAuthenticated, isLoading, bugId])
 
-  const loadBug = async () => {
+  const loadBug = useCallback(async () => {
     try {
       setLoading(true)
       setError('')
@@ -55,7 +55,7 @@ export default function EditBug() {
     } finally {
       setLoading(false)
     }
-  }
+  }, [bugId])
 
   const handleImagesChange = (newImages) => {
     setImages(newImages)
